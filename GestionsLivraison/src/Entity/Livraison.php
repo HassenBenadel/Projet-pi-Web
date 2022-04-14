@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LivraisonRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=LivraisonRepository::class)
@@ -28,13 +29,20 @@ class Livraison
      */
     private $Date_livraison;
 
-    /**
-     * @ORM\Column(type="string", length=255)
+     /**
+     * @Assert\NotBlank(message="prix total  doit etre non vide")
+     * @Assert\Length(
+     *      min = 5000,
+     *      max = 100000,
+     *      minMessage = "doit etre >=5000",
+     *      maxMessage = "doit etre <=100" )     
+     * @ORM\Column(type="string", length=100000)
      */
     private $prix_total;
 
-    /**
-     * @ORM\Column(type="string", length=255)
+   /**
+     * @Assert\NotBlank(message="mode paiement  :doit etre non vide")
+     * @ORM\Column(type="string", length=1000)
      */
     private $mode_paiement;
 

@@ -5,12 +5,13 @@
                   <div class="card-body">
                     <h4 class="card-title">Ajouter un Depot</h4>
                   
-                     {{ form_start(depot) }}
+                     {{ form_start(depot, {attr:{novalidate:'novalidate'}}) }}
                       <div class="col-md-6">
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Adresse</label>
                             <div class="col-sm-9">
                               {{form_widget(depot.adresse, {'attr':{'class': 'form-control'}})}}
+                               {{form_errors(depot.adresse, {'attr':{'class': 'text-danger'}})}}
                             </div>
                           </div>
                         </div>
@@ -30,6 +31,7 @@
                             <label class="col-sm-3 col-form-label">Disponibilite</label>
                             <div class="col-sm-9">
                               {{form_widget(depot.disponibilite, {'attr':{'class': 'form-control'}})}}
+                               {{form_errors(depot.disponibilite, {'attr':{'class': 'text-danger'}})}}
                             </div>
                           </div>
                         </div>

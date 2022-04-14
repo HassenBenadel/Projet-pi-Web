@@ -5,7 +5,7 @@
                   <div class="card-body">
                     <h4 class="card-title">Ajouter une livraison</h4>
                   
-                     {{ form_start(livraison) }}
+                     {{ form_start(livraison,{attr:{novalidate:'novalidate'}}) }}
                       <div class="col-md-6">
                           <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Date livraison</label>
@@ -20,6 +20,7 @@
                             <label class="col-sm-3 col-form-label">Prix total</label>
                             <div class="col-sm-9">
                                {{form_widget(livraison.prix_total, {'attr':{'class': 'form-control'}})}}
+                                {{form_errors(livraison.prix_total, {'attr':{'class': 'text-danger'}})}}
                             </div>
                           </div>
                         </div>
@@ -30,6 +31,7 @@
                             <label class="col-sm-3 col-form-label">Mode paiement</label>
                             <div class="col-sm-9">
                               {{form_widget(livraison.mode_paiement, {'attr':{'class': 'form-control'}})}}
+                              {{form_errors(livraison.mode_paiement, {'attr':{'class': 'text-danger'}})}}
                             </div>
                           </div>
                         </div>
@@ -83,3 +85,7 @@
  
 
     {% endblock %}
+
+
+
+    

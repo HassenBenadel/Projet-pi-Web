@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\DepotRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=DepotRepository::class)
@@ -17,8 +18,9 @@ class Depot
      */
     private $Id_depot;
 
-    /**
-     * @ORM\Column(type="string", length=255)
+   /**
+     * @Assert\NotBlank(message="adresse   :doit etre non vide")
+     * @ORM\Column(type="string", length=1000)
      */
     private $adresse;
 
@@ -28,7 +30,8 @@ class Depot
     private $quantite;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="disponibilite   :doit etre non vide")
+     * @ORM\Column(type="string", length=1000)
      */
     private $disponibilite;
 
