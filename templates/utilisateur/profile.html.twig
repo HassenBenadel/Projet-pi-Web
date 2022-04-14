@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile
+{% endblock %}
+
+{% block body %}
+	<h1>Profile Utilisateur</h1>
+
+	{% block header %}
+		{{ parent() }}
+	{% endblock %}
+	<main id="main">
+		<section>
+
+			<div class="main-panel">
+				<div class="content-wrapper">
+
+					<table class="table"></tr>
+					<th>Nom</th>
+					<td>{{(app.session.get('user')[0].nom)}}</td>
+
+				</tr>
+				<tr>
+					<th>Prenom</th>
+					<td>{{(app.session.get('user')[0].prenom)}}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{(app.session.get('user')[0].email)}}</td>
+				</tr>
+				<tr>
+					<th>Telephone</th>
+					<td>{{(app.session.get('user')[0].telephone)}}</td>
+				</tr>
+				<th>Pays</th>
+				<td>{{(app.session.get('user')[0].pays)}}</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>{{(app.session.get('user')[0].ville)}}</td>
+			</tr>
+			{#<tr>
+																													<th>Password</th>
+																													<td>{{ utilisateur.password }}</td>
+																												</tr>#}
+			<tr>
+				<th>Typecompte</th>
+				<td>{{(app.session.get('user')[0].typecompte)}}</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+
+	{# <a href="{{ path('app_utilisateur_edit', {'idUser': utilisateur.idUser}) }}">edit</a> #}
+
+
+</div></div></section></main>{% endblock %}

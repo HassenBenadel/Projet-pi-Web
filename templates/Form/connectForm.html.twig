@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connect
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+	<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+	<link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+	<link href="{{ asset('assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('assets/js/main.js') }}"></script>
+	<script src="{{ asset('assets/vendor/purecounter/purecounter.js') }}"></script>
+	<script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+	<script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+	<script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+	<script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+{% endblock %}
+{% block body %}
+	{% block header %}
+			{{ parent() }}
+		{% endblock %}
+	
+	<main id="main">
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-6"></div>
+					<div class="col-6">
+						<h1>Connect User</h1>
+					</div>
+				</div>
+				<div class="row">
+					{{ form_start(form) }}
+					<div class="row">
+						<div class="col-6"></div>
+						<div class="col-6">
+							{{ form_row(form.email) }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6"></div>
+						<div class="col-6">
+							<div class="col" id="some-custom-id">
+								{{ form_row(form.password) }}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6"></div>
+						<div class="col-3">
+							{{ form_row(form.Connect) }}
+						</div>
+						<div class="col-3">
+							{{ form_row(form.Cancel) }}
+						</div>
+					</div>
+					{% if user is defined %}
+						<div class="row">
+							<div class="col-6"></div>
+							<div class="col-6">
+								<div class="alert alert-danger" role="alert">
+									Your email / password is wrong !!!!
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					{{form_end(form)}}
+				</div>
+			</div>
+		</div>
+	</section>
+</main>{% endblock %}

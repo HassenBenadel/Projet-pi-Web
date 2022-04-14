@@ -1,0 +1,64 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Utilisateur index
+{% endblock %}
+
+{% block body %}
+	<h1>Utilisateur index</h1>
+
+	<div class="container-scroller">
+		{% block sidebar %}
+			{{ parent() }}
+		{% endblock %}
+		<div class="container-fluid page-body-wrapper">
+			{% block navbar %}
+				{{ parent() }}
+			{% endblock %}
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>IdUser</th>
+								<th>Nom</th>
+								<th>Prenom</th>
+								<th>Email</th>
+								<th>Telephone</th>
+								<th>Image</th>
+								<th>Pays</th>
+								<th>Ville</th>
+								<th>Typecompte</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for utilisateur in utilisateurs %}
+								<tr>
+									<td>{{ utilisateur.idUser }}</td>
+									<td>{{ utilisateur.nom }}</td>
+									<td>{{ utilisateur.prenom }}</td>
+									<td>{{ utilisateur.email }}</td>
+									<td>{{ utilisateur.telephone }}</td>
+									<td>{{ utilisateur.image }}</td>
+									<td>{{ utilisateur.pays }}</td>
+									<td>{{ utilisateur.ville }}</td>
+									<td>{{ utilisateur.typecompte }}</td>
+									<td>
+										<a href="{{ path('UserDescription', {'idUser': utilisateur.idUser}) }}">show</a>
+										{#<a href="{{ path('BanUser', {'idUser': utilisateur.idUser}) }}">Ban</a>#}
+										{# <a href="{{ path('DeleteUser', {'idUser': utilisateur.idUser}) }}">delete</a> #}
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="15">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<a href="{{ path('SignUp') }}">Create new</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
