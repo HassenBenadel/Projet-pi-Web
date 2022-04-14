@@ -1,0 +1,42 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Categorie{% endblock %}
+
+{% block body %}
+<div class="container-scroller">
+        {% block sidebar %}
+            {{ parent() }}
+        {% endblock %}
+                        <div class="container-fluid page-body-wrapper">
+                            {% block navbar %}
+                                {{ parent() }}
+                            {% endblock %}
+                                <h1>Categorie</h1>
+
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Idc</th>
+                                            <td>{{ categorie.idc }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Type</th>
+                                            <td>{{ categorie.type }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Imagec</th>
+                                            <td>{{ categorie.imagec }}</td>
+                                        </tr>
+                                    </tbody>
+                             </table>
+
+                            <a href="{{ path('app_categorie_index') }}">back to list</a>
+
+                            <a href="{{ path('app_categorie_edit', {'idc': categorie.idc}) }}">edit</a>
+
+                            {{ include('categorie/_delete_form.html.twig') }}
+                        </div>
+                </div>
+        </div>
+    </div
+{% endblock %}

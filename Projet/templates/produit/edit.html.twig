@@ -1,0 +1,69 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Edit Produit{% endblock %}
+
+{% block body %}
+<div class="container-scroller">
+        {% block sidebar %}
+            {{ parent() }}
+        {% endblock %}
+        <div class="container-fluid page-body-wrapper">
+                 {% block navbar %}
+                {{ parent() }}
+                {% endblock %}
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <h1>Edit Produit</h1>
+                        <div class="container">
+                        <div class="row">
+                                {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.nomproduit) }}
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.quantite) }}
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.prix) }}
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.image) }}
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.reference) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.Ajouter) }}
+                                    {{ form_row(form.Annuler) }}
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+
+                        {{ include('produit/_form.html.twig', {'button_label': 'Update'}) }}
+
+                        <a href="{{ path('app_produit_index') }}">back to list</a>
+
+                        {{ include('produit/_delete_form.html.twig') }}
+                     </div>
+                </div>
+         </div>
+    </div>
+{% endblock %}

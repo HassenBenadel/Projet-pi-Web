@@ -1,0 +1,49 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Nouvelle Categorie{% endblock %}
+
+{% block body %}
+<div class="container-scroller">
+        {% block sidebar %}
+            {{ parent() }}
+        {% endblock %}
+        <div class="container-fluid page-body-wrapper">
+            {% block navbar %}
+                {{ parent() }}
+            {% endblock %}
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <h1>Create new Categorie</h1>
+                        <div class="container">
+                        <div class="row">
+                                {{ form_start(form,{'attr' : {'novalidate' : 'novalidate'}})}}
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.type) }}
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.imagec) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.Ajouter) }}
+                                    {{ form_row(form.Annuler) }}
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                        <a href="{{ path('app_categorie_index') }}">back to list</a>
+                    </div>
+                </div>
+        </div>
+    </div
+
+{% endblock %}

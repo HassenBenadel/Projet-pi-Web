@@ -1,0 +1,59 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Categorie index{% endblock %}
+
+{% block body %}
+    <div class="container-scroller">
+        {% block sidebar %}
+            {{ parent() }}
+        {% endblock %}
+        <div class="container-fluid page-body-wrapper">
+            {% block navbar %}
+                {{ parent() }}
+            {% endblock %}
+            <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Categorie</h4>
+                                <div class="row">
+                                    <div class="table-responsive">
+
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Idc</th>
+                                                            <th>Type</th>
+                                                            <th>Imagec</th>
+                                                            <th>actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {% for categorie in categories %}
+                                                        <tr>
+                                                            <td>{{ categorie.idc }}</td>
+                                                            <td>{{ categorie.type }}</td>
+                                                            <td>{{ categorie.imagec }}</td>
+                                                            <td>
+                                                                <a href="{{ path('app_categorie_show', {'idc': categorie.idc}) }}" class="btn btn-success" >show</a>
+                                                                <a href="{{ path('app_categorie_edit', {'idc': categorie.idc}) }}" class="btn btn-success" >edit</a>
+                                                            </td>
+                                                        </tr>
+                                                    {% else %}
+                                                        <tr>
+                                                            <td colspan="4">no records found</td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                    </tbody>
+                                                </table>
+
+                                                <a href="{{ path('app_categorie_new') }}" class="btn btn-primary btn-fw" >Create new</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
