@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier index{% endblock %}
+
+{% block body %}
+<div class="row" style="display: flex;align-items: rightcenter;justify-content: rightcenter;margin-top: 150px;">
+
+    <div class="col-lg-4">
+
+        <div class="card">
+            <div class="card-body">
+    <h1>Votre panier</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Total panier</th>
+           
+            </tr>
+        </thead>
+        <tbody>
+        {% for panier in paniers %}
+            <tr>
+        
+                <td>{{ panier.totalpanier }}</td>
+         
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_panier_new') }}">Passez à la commande</a>
+       </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+{% endblock %}

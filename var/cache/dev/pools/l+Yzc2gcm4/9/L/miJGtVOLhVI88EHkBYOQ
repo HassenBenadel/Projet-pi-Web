@@ -1,0 +1,3 @@
+<?php //App%255CEntity%255CCarteFidelite%2523getNum_carte
+
+return [PHP_INT_MAX, []];

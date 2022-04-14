@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CarteFidelite{% endblock %}
+
+{% block body %}
+  <div class="row">
+        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
+
+            <div class="card">
+                <div class="card-body">
+    <h1>Votre carte de fidelite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Numéro de carte:</th>
+                <td>{{ carte_fidelite.num_carte }}</td>
+            </tr>
+            <tr>
+                <th>Votre identifiant:</th>
+                <td>{{ carte_fidelite.idClient }}</td>
+            </tr>
+            <tr>
+                <th>Nombre des points:</th>
+                <td>{{ carte_fidelite.Numpoint }}</td>
+            </tr>
+            <tr>
+                <th>Date du creation:</th>
+                <td>{{ carte_fidelite.Datecreation ? carte_fidelite.Datecreation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date de la fin du validite:</th>
+                <td>{{ carte_fidelite.Datefinvalidite ? carte_fidelite.Datefinvalidite|date('Y-m-d') : '' }}</td>
+            </tr>
+    
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_carte_fidelite_index') }}">back to list</a>
+
+    <a href="{{ path('app_carte_fidelite_edit', {'Num_carte': carte_fidelite.num_carte}) }}">edit</a>
+<a href="{{ path('app_carte_fidelite_convert', {'Num_carte': carte_fidelite.num_carte}) }}">convertir point</a>
+    {{ include('carte_fidelite/_delete_form.html.twig') }}
+       </div>
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}

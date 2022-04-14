@@ -1,0 +1,60 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Commande index{% endblock %}
+
+{% block body %}
+<div class="row" style="display: flex;align-items: center;justify-content: center;margin-top: 150px;">
+
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+    <h1>Liste des commandes </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id_commande</th>
+                <th>Methpaiement</th>
+                <th>Totalprix</th>
+                <th>Totalpanier</th>
+                <th>DateCommande</th>
+                <th>Code</th>
+                <th>Id_client</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id_commande }}</td>
+                <td>{{ commande.methpaiement }}</td>
+                <td>{{ commande.totalprix }}</td>
+                <td>{{ commande.totalpanier }}</td>
+                <td>{{ commande.DateCommande ? commande.DateCommande|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.code }}</td>
+                <td>{{ commande.idClient }}</td>
+                <td>
+                    <a href="{{ path('app_commande_show', {'id_commande': commande.id_commande}) }}">show</a>
+                    <a href="{{ path('app_commande_edit', {'id_commande': commande.id_commande}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<a href="{{ path('app_carte_fidelite_index') }}">Gestion des Carte fidelite</a>
+
+       </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}

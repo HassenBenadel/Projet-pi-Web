@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_carte_fidelite_delete', {'Num_carte': carte_fidelite.num_carte}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ carte_fidelite.num_carte) }}">
+    <button class="btn">Annuler la carte de fidelite</button>
+</form>

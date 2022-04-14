@@ -1,0 +1,42 @@
+{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+    
+        
+    
+                        <label for="inputText" class="col-sm-4 col-form-label">Choississez une méthode de paiement </label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.methpaiement,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+                    {{ form_errors(form.methpaiement,{'attr':{'class':'text-danger'}}) }}
+
+
+
+           
+            
+   
+                    <label for="inputText" class="col-sm-4 col-form-label">Id client</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.IdClient,{'attr':{'class':'form-control'}}) }}
+
+                    </div>
+                    {{ form_errors(form.IdClient,{'attr':{'class':'text-danger'}}) }}
+
+                    <label for="inputText" class="col-sm-4 col-form-label">code</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.code,{'attr':{'class':'form-control'}}) }}
+                        </div>
+                    {{ form_errors(form.code,{'attr':{'class':'text-danger'}}) }}
+<label for="inputText" class="col-sm-4 col-form-label">Numero de carte fidelite:</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.num_carte,{'attr':{'class':'form-control'}}) }}
+                        </div>
+                    {{ form_errors(form.num_carte,{'attr':{'class':'text-danger'}}) }}
+                    <br/>
+                    <div class="col-sm-10" style="display: flex;align-items: center;justify-content: center">
+
+                       <button class=class="btn btn-success">{{ button_label|default('Commander') }}</button>
+                    </div>
+
+   
+   
+{{ form_end(form) }}

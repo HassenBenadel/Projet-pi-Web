@@ -1,0 +1,49 @@
+<?php //App%255CEntity%255CCommande%2524num_carte
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ManyToOne'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\ManyToOne')),
+        clone ($p['Doctrine\\ORM\\Mapping\\JoinColumn'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\JoinColumn')),
+        clone ($p['Symfony\\Component\\Validator\\Constraints\\Length'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Validator\\Constraints\\Length')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'targetEntity' => [
+                'App\\Entity\\CarteFidelite',
+            ],
+            'inversedBy' => [
+                'commandes',
+            ],
+            'name' => [
+                1 => 'num_carte',
+            ],
+            'referencedColumnName' => [
+                1 => 'num_carte',
+            ],
+            'groups' => [
+                2 => [
+                    'Default',
+                ],
+            ],
+            'maxMessage' => [
+                2 => 'Votre id ne contient pas 11 caractères.',
+            ],
+            'minMessage' => [
+                2 => 'Votre id ne contient pas 11 caractères.',
+            ],
+            'max' => [
+                2 => 11,
+            ],
+            'min' => [
+                2 => 1,
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+    ],
+    []
+); }];

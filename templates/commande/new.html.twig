@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+	
+{% block title %} Finalisez la commande {% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
+
+            <div class="card">
+                <div class="card-body">
+
+
+
+    <h1>Remplir vos données personnelles :</h1>
+
+    {{ include('commande/_form.html.twig') }}
+
+   {#<a href="{{ path('app_commande_index') }}">back to list</a>#}
+      </div>
+            </div>
+
+        </div>
+
+    </div>
+    
+{% endblock %}

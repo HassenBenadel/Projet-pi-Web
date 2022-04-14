@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CodeReduction{% endblock %}
+
+{% block body %}
+    <h1>Create new CodeReduction</h1>
+
+    {{ include('code_reduction/_form.html.twig') }}
+
+    <a href="{{ path('app_code_reduction_index') }}">back to list</a>
+{% endblock %}

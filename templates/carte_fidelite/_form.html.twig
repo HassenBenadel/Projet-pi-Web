@@ -1,0 +1,19 @@
+{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+    
+        
+    
+                        <label for="inputText" class="col-sm-4 col-form-label">Veuillez entrez votre id: </label>
+                        <div class="col-sm-15">
+                            {{ form_widget(form.id_client,{'attr':{'class':'form-control'}}) }}
+
+                        </div>
+                    {{ form_errors(form.id_client,{'attr':{'class':'text-danger'}}) }}
+                    <div class="col-sm-10" style="display: flex;align-items: center;justify-content: center">
+
+                       <button class=class="btn btn-success">{{ button_label|default('Valider') }}</button>
+                    </div>
+
+
+           
+            
+{{ form_end(form) }}

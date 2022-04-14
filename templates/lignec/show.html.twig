@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lignec{% endblock %}
+
+{% block body %}
+    <h1>Lignec</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lignec.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_panier</th>
+                <td>{{ lignec.idPanier }}</td>
+            </tr>
+            <tr>
+                <th>IdP</th>
+                <td>{{ lignec.idP }}</td>
+            </tr>
+            <tr>
+                <th>Quantite</th>
+                <td>{{ lignec.quantite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lignec_index') }}">back to list</a>
+
+    <a href="{{ path('app_lignec_edit', {'id': lignec.id}) }}">edit</a>
+
+    {{ include('lignec/_delete_form.html.twig') }}
+{% endblock %}

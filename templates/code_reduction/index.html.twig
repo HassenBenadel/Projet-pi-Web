@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CodeReduction index{% endblock %}
+
+{% block body %}
+    <h1>CodeReduction index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Pourcentage</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for code_reduction in code_reductions %}
+            <tr>
+                <td>{{ code_reduction.code }}</td>
+                <td>{{ code_reduction.pourcentage }}</td>
+                <td>
+                    <a href="{{ path('app_code_reduction_show', {'code': code_reduction.code}) }}">show</a>
+                    <a href="{{ path('app_code_reduction_edit', {'code': code_reduction.code}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_code_reduction_new') }}">Create new</a>
+{% endblock %}

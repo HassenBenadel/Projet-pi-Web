@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Panier{% endblock %}
+
+{% block body %}
+<div class="container">
+<div id="content-wrapper">
+<section id="main">
+<div class="cart-grid row">
+
+<div class="cart-grid-body col-xs-12 col-lg-8">
+
+<div class="card cart-container">
+<div class="card-block">
+<h1 class="h1">Panier</h1>
+</div>
+<div class="cart-overview js-cart" data-refresh-url="//pharma-shop.tn/panier?ajax=1&action=refresh">
+<span class="no-items">Il n'y a plus d'articles dans votre panier</span>
+</div>
+</div>
+<a class="label" href="https://pharma-shop.tn/">
+<i class="material-icons">chevron_left</i>Continuer mes achats
+</a>
+
+<div id="loylalty_cart_parent"> <div id="loyalty_cart">
+<div class="icons-cadeaux"></div>
+<div> Ajoutez des produits à votre panier pour gagnier des points de fidélité.</div>
+</div>
+</div>
+</div>
+
+<div class="cart-grid-right col-xs-12 col-lg-4">
+<h2 class="titlecart">Votre panier</h2>
+<div class="card cart-summary">
+<div class="cart-detailed-totals">
+<div class="card-block">
+<div class="cart-summary-line" id="cart-subtotal-products">
+<span class="label js-subtotal">
+0 articles
+</span>
+<span class="value">
+0,000 TND
+</span>
+</div>
+</div>
+<div class="card-block cart-summary-totals">
+<div class="cart-summary-line cart-total">
+<span class="label">Total&nbsp;TTC</span>
+<span class="value">0,000 TND</span>
+</div>
+</div>
+</div>
+<div class="checkout text-sm-center card-block">
+<button type="button" class="btn btn-primary disabled" disabled>Commander</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</section>
+    <h1>Create new Panier</h1>
+
+    {{ include('panier/_form.html.twig') }}
+
+    <a href="{{ path('app_panier_index') }}">back to list</a>
+{% endblock %}

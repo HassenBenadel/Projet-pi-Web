@@ -1,0 +1,43 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Gestion des cartes fidelites{% endblock %}
+
+{% block body %}
+    <h1>Liste des cartes fidelites</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NumCarte</th>
+                <th>Id_client</th>
+                <th>Numpoint</th>
+                <th>Datecreation</th>
+                <th>Datefinvalidite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for carte_fidelite in carte_fidelites %}
+            <tr>
+                <td>{{ carte_fidelite.num_carte }}</td>
+                <td>{{ carte_fidelite.idClient }}</td>
+                <td>{{ carte_fidelite.Numpoint }}</td>
+                <td>{{ carte_fidelite.Datecreation ? carte_fidelite.Datecreation|date('Y-m-d') : '' }}</td>
+                <td>{{ carte_fidelite.Datefinvalidite ? carte_fidelite.Datefinvalidite|date('Y-m-d') : '' }}</td>
+                <td>
+               {# <a href="{{ path('app_carte_fidelite_convert', {'Num_carte': carte_fidelite.num_carte}) }}">convertir point</a>#}
+                    <a href="{{ path('app_carte_fidelite_showadmin', {'Num_carte': carte_fidelite.num_carte}) }}">show</a>
+                    <a href="{{ path('app_carte_fidelite_edit', {'Num_carte': carte_fidelite.num_carte}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {#<a href="{{ path('app_carte_fidelite_new') }}">Create new</a>#}
+    <a href="{{ path('app_commande_index') }}">Gestion des commandes</a>
+{% endblock %}
