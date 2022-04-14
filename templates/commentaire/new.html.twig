@@ -1,0 +1,25 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}New Commentaire{% endblock %}
+
+{% block body %}
+    <div class="container-scroller">
+        {% block sidebar %}
+            {{ parent() }}
+        {% endblock %}
+        <div class="container-fluid page-body-wrapper">
+            {% block navbar %}
+                {{ parent() }}
+            {% endblock %}
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <h1>Create new Commentaire</h1>
+
+                    {{ include('commentaire/_form.html.twig') }}
+
+                    <a href="{{ path('app_commentaire_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

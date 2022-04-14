@@ -1,0 +1,60 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Post{% endblock %}
+
+{% block body %}
+    <div class="container-scroller">
+        {% block sidebar %}
+            {{ parent() }}
+        {% endblock %}
+        <div class="container-fluid page-body-wrapper">
+            {% block navbar %}
+                {{ parent() }}
+            {% endblock %}
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <h1>Post</h1>
+
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ post.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Userid</th>
+                            <td>{{ post.userid }}</td>
+                        </tr>
+                        <tr>
+                            <th>Titre</th>
+                            <td>{{ post.titre }}</td>
+                        </tr>
+                        <tr>
+                            <th>Image</th>
+                            <td>{{ post.image }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ post.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Contenu</th>
+                            <td>{{ post.contenu }}</td>
+                        </tr>
+                        <tr>
+                            <th>Datecreation</th>
+                            <td>{{ post.datecreation ? post.datecreation|date('Y-m-d') : '' }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <a href="{{ path('app_post_index') }}" class="badge badge-outline-success">back to list</a>
+
+                    <a href="{{ path('app_post_edit', {'id': post.id}) }}" class="badge badge-outline-warning">edit</a>
+
+                    {{ include('post/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

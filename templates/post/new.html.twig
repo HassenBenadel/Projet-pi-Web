@@ -1,0 +1,69 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Creation de Post{% endblock %}
+
+{% block body %}
+    <div class="container-scroller">
+        {% block sidebar %}
+            {{ parent() }}
+        {% endblock %}
+        <div class="container-fluid page-body-wrapper">
+            {% block navbar %}
+                {{ parent() }}
+            {% endblock %}
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <h1>Ajouter un Post</h1>
+                    <div class="container">
+                        <div class="row">
+                            {{ form_start(form,{'attr' : {'novalidate' : 'novalidate'}}) }}
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.userid) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.titre) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.image) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.description) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.contenu) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8"></div>
+                                <div class="col-lg-4">
+                                    {{ form_row(form.Ajouter) }}
+                                    {{ form_row(form.Annuler) }}
+                                </div>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+
+                    {#
+                    {{ include('post/_form.html.twig') }}
+                    #}
+                    <a href="{{ path('app_post_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
