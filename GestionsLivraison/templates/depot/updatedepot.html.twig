@@ -1,6 +1,72 @@
+{% extends 'Bbase.html.twig' %}
 {% block body %}
-<div class="container">
-    <h2>Modifier</h2>
 
-    {{ form(depot) }}
+<div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Modifier les depots </h4>
+                  
+                     {{ form_start(depot) }}
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Adresse</label>
+                            <div class="col-sm-9">
+                              {{form_widget(depot.adresse, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                      <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Quantite</label>
+                            <div class="col-sm-9">
+                               {{form_widget(depot.quantite, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Disponibilite</label>
+                            <div class="col-sm-9">
+                              {{form_widget(depot.disponibilite, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                     
+        
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Id produit </label>
+                            <div class="col-sm-9">
+                              {{form_widget(depot.Id_produit, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                         </div>
+
+                          <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Id livraison </label>
+                            <div class="col-sm-9">
+                              {{form_widget(depot.Id_livraison, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                      
+                     
+                     {{ form_widget(depot.Modifier, { 'attr': {'class':'btn btn-primary mr-2' }})}}
+                      </div>
+                   {{form_end(depot)}}
+                   
+                  </div>
+                </div>
+
 {% endblock %}

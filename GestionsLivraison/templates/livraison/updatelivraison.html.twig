@@ -1,6 +1,84 @@
+{% extends 'Bbase.html.twig' %}
 {% block body %}
-<div class="container">
-    <h2>Modifier</h2>
 
-    {{ form(livraison) }}
+
+<div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Modifier la livraison</h4>
+                  
+                     {{ form_start(livraison) }}
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Date livraison</label>
+                            <div class="col-sm-9">
+                              {{form_widget(livraison.Date_livraison, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                      <div class="row">
+                      <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Prix total</label>
+                            <div class="col-sm-9">
+                               {{form_widget(livraison.prix_total, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Mode paiement</label>
+                            <div class="col-sm-9">
+                              {{form_widget(livraison.mode_paiement, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                     
+        
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Id livreur </label>
+                            <div class="col-sm-9">
+                              {{form_widget(livraison.Id_livreur, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                         </div>
+
+                          <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Id commande </label>
+                            <div class="col-sm-9">
+                              {{form_widget(livraison.Id_commande, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                       <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Id client </label>
+                            <div class="col-sm-9">
+                              {{form_widget(livraison.Id_client, {'attr':{'class': 'form-control'}})}}
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div>
+                     
+                     {{ form_widget(livraison.Modifier, { 'attr': {'class':'btn btn-primary mr-2' }})}}
+                      </div>
+                   {{form_end(livraison)}}
+                   
+                  </div>
+                </div>
+
 {% endblock %}
