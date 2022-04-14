@@ -30,13 +30,8 @@ class Livraison
     private $Date_livraison;
 
      /**
-     * @Assert\NotBlank(message="prix total  doit etre non vide")
-     * @Assert\Length(
-     *      min = 5000,
-     *      max = 100000,
-     *      minMessage = "doit etre >=5000",
-     *      maxMessage = "doit etre <=100" )     
-     * @ORM\Column(type="string", length=100000)
+     * @Assert\NotBlank(message="prix total  :doit etre non vide")
+     * @ORM\Column(type="string", length=1000)
      */
     private $prix_total;
 

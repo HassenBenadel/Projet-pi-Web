@@ -1,6 +1,15 @@
 {% extends 'Bbase.html.twig' %}
 {% block body %}
-
+<div class="container-scroller">
+        {% block sidebar %}
+            {{ parent() }}
+        {% endblock %}
+        <div class="container-fluid page-body-wrapper">
+            {% block navbar %}
+                {{ parent() }}
+            {% endblock %}
+            <div class="main-panel">
+                <div class="content-wrapper">
 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Ajouter une livraison</h4>
@@ -81,7 +90,10 @@
                    
                   </div>
                 </div>
-
+                 </div>
+                 </div>
+                 </div>
+                 </div>
  
 
     {% endblock %}
