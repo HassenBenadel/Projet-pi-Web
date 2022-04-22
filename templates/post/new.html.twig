@@ -13,55 +13,38 @@
             {% endblock %}
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <h1>Ajouter un Post</h1>
-                    <div class="container">
-                        <div class="row">
-                            {{ form_start(form,{'attr' : {'novalidate' : 'novalidate'}}) }}
-                            <div class="row">
-                                <div class="col-lg-8"></div>
-                                <div class="col-lg-4">
-                                    {{ form_row(form.userid) }}
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Ajouter un Post</h4>
+                                <p class="card-description"> Completez la formule pour ajouter un Post </p>
+                                {{ form_start(form,{'attr' : {'novalidate' : 'novalidate'}}) }}
+                                <div class="form-group">
+                                    <label>Titre</label>
+                                    {{form_widget(form.titre, {'attr':{'class': 'form-control'}})}}
+                                    {{form_errors(form.titre, {'attr':{'class': 'text-danger'}})}}
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-8"></div>
-                                <div class="col-lg-4">
-                                    {{ form_row(form.titre) }}
+                                <div class="form-group">
+                                    <label for="exampleInputEmail3">Description</label>
+                                    {{form_widget(form.description, {'attr':{'class': 'form-control', 'rows': 5} })}}
+                                    {{form_errors(form.description, {'attr':{'class': 'text-danger'} })}}
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-8"></div>
-                                <div class="col-lg-4">
-                                    {{ form_row(form.image) }}
+                                <div class="form-group">
+                                    <label for="exampleInputPassword4">Contenu</label>
+                                    {{form_widget(form.contenu, {'attr':{'class': 'form-control', 'rows': 5}})}}
+                                    {{form_errors(form.contenu, {'attr':{'class': 'text-danger'} })}}
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-8"></div>
-                                <div class="col-lg-4">
-                                    {{ form_row(form.description) }}
+                                <div class="form-group">
+                                    <label for="exampleInputCity1">Image</label>
+                                    {{form_widget(form.image, {'attr':{'class': 'form-control'}})}}
                                 </div>
+                                {{ form_widget(form.Ajouter, { 'attr': {'class':'btn btn-primary mr-2' }})}}
+                                {{ form_widget(form.Annuler, { 'attr': {'class':'btn btn-dark'}})}}
+                                {{form_end(form)}}
+                                <a href="{{ path('app_post_index') }}" class="float-right">Retourner</a>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-8"></div>
-                                <div class="col-lg-4">
-                                    {{ form_row(form.contenu) }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-8"></div>
-                                <div class="col-lg-4">
-                                    {{ form_row(form.Ajouter) }}
-                                    {{ form_row(form.Annuler) }}
-                                </div>
-                            </div>
-                            {{ form_end(form) }}
                         </div>
                     </div>
-
-                    {#
-                    {{ include('post/_form.html.twig') }}
-                    #}
-                    <a href="{{ path('app_post_index') }}">back to list</a>
                 </div>
             </div>
         </div>

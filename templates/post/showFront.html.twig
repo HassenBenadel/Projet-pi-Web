@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+    {% block navBar %}
+        {{ parent() }}
+    {% endblock %}
+    <main id="main">
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Blog</h2>
+                    <ol>
+                        <li>Acceuil</li>
+                        <li>Blog</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        <section id="blog" class="blog">
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div>
+                        <a href="{{ path('app_postFront_index') }}" class="btn btn-primary reply-form">Retourner</a>
+                    </div>
+                    <div class="col-lg-8 entries">
+                        <article class="entry entry-single">
+                            <div class="entry-img">
+                                <img src="{{ asset('uploads/posts/' ~ post.image) }}" alt="" class="img-fluid rounded mx-auto d-block">
+                            </div>
+                            <h2 class="entry-title">
+                                {{ post.titre }}
+                            </h2>
+                            <div class="entry-meta">
+                                <ul>
+                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i>Admin</li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i>{{ post.datecreation ? post.datecreation|date('d-m-Y') : '' }}</li>
+                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i>X Commentaires</li>
+                                </ul>
+                            </div>
+                            <div class="entry-content">
+                                <blockquote>
+                                    <p>
+                                        {{ post.description }}
+                                    </p>
+                                </blockquote>
+                                <p>
+                                    {{ post.contenu }}
+                                </p>
+                            </div>
+                            <div class="entry-footer">
+                                <i class="bi bi-folder"></i>
+                                <ul class="cats">
+                                    <li><a href="#">Business</a></li>
+                                </ul>
+                                <i class="bi bi-tags"></i>
+                                <ul class="tags">
+                                    <li><a href="#">Creative</a></li>
+                                    <li><a href="#">Tips</a></li>
+                                    <li><a href="#">Marketing</a></li>
+                                </ul>
+                            </div>
+                        </article>
+                        <div class="blog-comments">
+                            <div class="reply-form">
+                                <h4>Laisser un commentaire</h4>
+                                <p>Partagez quelques informations avec nous! ^^</p>
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col form-group">
+                                            <textarea name="comment" class="form-control" placeholder="Votre Commentaire.."></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Poster Commentaire</button>
+                                </form>
+                            </div>
+                            <br>
+                            <h4 class="comments-count">Les Commentaires</h4>
+                            {% for commentaire in commentaires %}
+                            <div class="blog-author d-flex align-items-center">
+                                <div id="comment" class="comment">
+                                    <div class="d-flex">
+                                        {# <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div> #}
+                                        <div>
+                                            <h5>{{ commentaire.commentateur }}</h5>
+                                            <hr width="500px">
+                                            <p>
+                                                {{ commentaire.contenu }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

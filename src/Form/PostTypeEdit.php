@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class PostType extends AbstractType
+class PostTypeEdit extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -21,7 +21,7 @@ class PostType extends AbstractType
             ->add('image',FileType::class ,array('data_class' => null))
             ->add('description', TextareaType::class)
             ->add('contenu', TextareaType::class)
-            ->add('Ajouter', SubmitType::class)
+            ->add('Modifier', SubmitType::class)
             ->add('Annuler', ResetType::class)
         ;
     }

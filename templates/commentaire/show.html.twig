@@ -13,38 +13,48 @@
             {% endblock %}
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <h1>Commentaire</h1>
-
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <th>Id</th>
-                            <td>{{ commentaire.id }}</td>
-                        </tr>
-                        <tr>
-                            <th>IdPost</th>
-                            <td>{{ commentaire.idpost }}</td>
-                        </tr>
-                        <tr>
-                            <th>Userid</th>
-                            <td>{{ commentaire.userid }}</td>
-                        </tr>
-                        <tr>
-                            <th>Commentateur</th>
-                            <td>{{ commentaire.commentateur }}</td>
-                        </tr>
-                        <tr>
-                            <th>Contenu</th>
-                            <td>{{ commentaire.contenu }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    <a href="{{ path('app_commentaire_index') }}">back to list</a>
-
-                    <a href="{{ path('app_commentaire_edit', {'id': commentaire.id}) }}">edit</a>
-
-                    {{ include('commentaire/_delete_form.html.twig') }}
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="float-right">
+                                <form method="post" action="{{ path('app_commentaire_delete', {'id': commentaire.id}) }}" onsubmit="return confirm('Vous voulez supprimer ce Commentaire?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
+                                    <button class="btn btn-danger btn-fw">Supprimer</button>
+                                </form>
+                            </span>
+                            <h4 class="card-title">
+                                Commentaire
+                            </h4>
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th>ID Commentaire</th>
+                                                <td>{{ commentaire.id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>ID Post</th>
+                                                <td>{{ commentaire.idpost }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>ID Utilisateur</th>
+                                                <td>{{ commentaire.userid }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Commentateur</th>
+                                                <td>{{ commentaire.commentateur }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Contenu</th>
+                                                <td>{{ commentaire.contenu }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <a href="{{ path('app_commentaire_index') }}" class="float-right">Retourner</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

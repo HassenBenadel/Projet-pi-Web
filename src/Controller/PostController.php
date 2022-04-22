@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Form\PostTypeEdit;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,9 +39,14 @@ class PostController extends AbstractController
         $form = $this->createForm(PostType::class, $post);
         $dateT = new \DateTime("now");
         $post->setDatecreation($dateT);
+        $post->setUserid(1);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $post->getImage();
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move($this->getParameter('images_directory'), $filename);
+            $post->setImage($filename);
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -68,10 +74,14 @@ class PostController extends AbstractController
      */
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(PostType::class, $post);
+        $form = $this->createForm(PostTypeEdit::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $post->getImage();
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move($this->getParameter('images_directory'), $filename);
+            $post->setImage($filename);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);

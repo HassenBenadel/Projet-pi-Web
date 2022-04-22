@@ -13,39 +13,49 @@
             {% endblock %}
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <h1>Commentaire index</h1>
-
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Userid</th>
-                            <th>Commentateur</th>
-                            <th>Contenu</th>
-                            <th>actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for commentaire in commentaires %}
-                            <tr>
-                                <td>{{ commentaire.id }}</td>
-                                <td>{{ commentaire.userid }}</td>
-                                <td>{{ commentaire.commentateur }}</td>
-                                <td>{{ commentaire.contenu }}</td>
-                                <td>
-                                    <a href="{{ path('app_commentaire_show', {'id': commentaire.id}) }}">show</a>
-                                    <a href="{{ path('app_commentaire_edit', {'id': commentaire.id}) }}">edit</a>
-                                </td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="5">no records found</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-
-                    <a href="{{ path('app_commentaire_new') }}">Create new</a>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                Liste des Commentaire
+                            </h4>
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>ID Utilisateur</th>
+                                            <th>Commentateur</th>
+                                            <th>Contenu</th>
+                                            <th>actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for commentaire in commentaires %}
+                                            <tr>
+                                                <td>{{ commentaire.id }}</td>
+                                                <td>{{ commentaire.userid }}</td>
+                                                <td>{{ commentaire.commentateur }}</td>
+                                                <td>{{ commentaire.contenu }}</td>
+                                                <td>
+                                                    <form method="post" action="{{ path('app_commentaire_delete', {'id': commentaire.id}) }}" onsubmit="return confirm('Vous voulez supprimer ce Commentaire?');">
+                                                        <a href="{{ path('app_commentaire_show', {'id': commentaire.id}) }}" class="badge badge-outline-success">Afficher</a>
+                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
+                                                        <button class="btn btn-outline-danger">Supprimer</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="8">Pas de commentaires</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
