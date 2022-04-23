@@ -46,4 +46,31 @@ class PostFrontController extends AbstractController
             'commentaires' => $commentaires,
         ]);
     }
+
+    /**
+     * @Route("/MesBlogs/{id}", name="app_postFront_MesBlogs", methods={"GET"})
+     */
+    public function indexMesBlogs(EntityManagerInterface $entityManager, int $id): Response
+    {
+        $posts = $entityManager
+            ->getRepository(Post::class)
+            ->findBy(['userid' => $id]);
+
+        return $this->render('post/indexMesBlogs.html.twig', [
+            'posts' => $posts,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}/{idU}", name="app_postFront_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Post $post, EntityManagerInterface $entityManager, int $idU): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($post);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_postFront_MesBlogs', array('id' => $idU), Response::HTTP_SEE_OTHER);
+    }
 }
