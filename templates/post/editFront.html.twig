@@ -28,8 +28,14 @@
                                 <div class="col-12 grid-margin stretch-card">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="card-title">Ajouter un Post</h4>
-                                            <p class="card-description"> Completez la formule pour ajouter un Post </p>
+                                            <span class="float-end">
+                                                <form method="post" action="{{ path('app_postFront_delete', {'id': post.id, 'idU': 1}) }}" onsubmit="return confirm('Vous voulez supprimer cette post?');">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+                                                    <button class="btn btn-danger btn-fw">Supprimer</button>
+                                                </form>
+                                            </span>
+                                            <h4 class="card-title">Modifer un Post</h4>
+                                            <p class="card-description"> Completez la formule pour modifier un Post </p>
                                             {{ form_start(form,{'attr' : {'novalidate' : 'novalidate'}}) }}
                                             <div class="form-group">
                                                 <label>Titre</label>
@@ -51,7 +57,7 @@
                                                 {{form_widget(form.image, {'attr':{'class': 'form-control'}})}}
                                             </div>
                                             <br>
-                                            {{ form_widget(form.Ajouter, { 'attr': {'class':'btn btn-primary mr-2' }})}}
+                                            {{ form_widget(form.Modifier, { 'attr': {'class':'btn btn-primary mr-2' }})}}
                                             {{ form_widget(form.Annuler, { 'attr': {'class':'btn btn-dark'}})}}
                                             {{form_end(form)}}
                                             <a href="{{ path('app_postFront_MesBlogs', {'idU': 1}) }}" class="btn customBtn float-end">Retourner</a>

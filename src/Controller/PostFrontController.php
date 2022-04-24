@@ -63,6 +63,32 @@ class PostFrontController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/edit/{idU}", name="app_postFront_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager, int $idU, int $id): Response
+    {
+        $form = $this->createForm(PostTypeEdit::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $post->getImage();
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move($this->getParameter('images_directory'), $filename);
+            $post->setImage($filename);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_postFront_MesBlogs', array('idU' => $idU), Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('post/editFront.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
+            'id' => $id,
+            'idU' => $idU,
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="app_postFront_show", methods={"GET"})
      */
     public function show(Post $post, EntityManagerInterface $entityManager, int $id): Response
