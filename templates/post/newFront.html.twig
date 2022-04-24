@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation de Post{% endblock %}
+
+{% block body %}
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper">
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Ajouter un Post</h4>
+                                <p class="card-description"> Completez la formule pour ajouter un Post </p>
+                                {{ form_start(form,{'attr' : {'novalidate' : 'novalidate'}}) }}
+                                <div class="form-group">
+                                    <label>Titre</label>
+                                    {{form_widget(form.titre, {'attr':{'class': 'form-control'}})}}
+                                    {{form_errors(form.titre, {'attr':{'class': 'text-danger'}})}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail3">Description</label>
+                                    {{form_widget(form.description, {'attr':{'class': 'form-control', 'rows': 5} })}}
+                                    {{form_errors(form.description, {'attr':{'class': 'text-danger'} })}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword4">Contenu</label>
+                                    {{form_widget(form.contenu, {'attr':{'class': 'form-control', 'rows': 5}})}}
+                                    {{form_errors(form.contenu, {'attr':{'class': 'text-danger'} })}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputCity1">Image</label>
+                                    {{form_widget(form.image, {'attr':{'class': 'form-control'}})}}
+                                </div>
+                                {{ form_widget(form.Ajouter, { 'attr': {'class':'btn btn-primary mr-2' }})}}
+                                {{ form_widget(form.Annuler, { 'attr': {'class':'btn btn-dark'}})}}
+                                {{form_end(form)}}
+                                <a href="{{ path('app_post_index') }}" class="float-right">Retourner</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

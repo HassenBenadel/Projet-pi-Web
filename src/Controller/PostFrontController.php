@@ -33,6 +33,36 @@ class PostFrontController extends AbstractController
     }
 
     /**
+     * @Route("/newFront/{idU}", name="app_postFront_new", methods={"GET", "POST"})
+     */
+    public function new(Request $request, EntityManagerInterface $entityManager, int $idU): Response
+    {
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
+        $dateT = new \DateTime("now");
+        $post->setDatecreation($dateT);
+        $post->setUserid($idU);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $file = $post->getImage();
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+            $file->move($this->getParameter('images_directory'), $filename);
+            $post->setImage($filename);
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_postFront_MesBlogs', array('idU' => $idU), Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('post/newFront.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
+            'idU' => $idU,
+        ]);
+    }
+
+    /**
      * @Route("/{id}", name="app_postFront_show", methods={"GET"})
      */
     public function show(Post $post, EntityManagerInterface $entityManager, int $id): Response
@@ -48,13 +78,13 @@ class PostFrontController extends AbstractController
     }
 
     /**
-     * @Route("/MesBlogs/{id}", name="app_postFront_MesBlogs", methods={"GET"})
+     * @Route("/MesBlogs/{idU}", name="app_postFront_MesBlogs", methods={"GET"})
      */
-    public function indexMesBlogs(EntityManagerInterface $entityManager, int $id): Response
+    public function indexMesBlogs(EntityManagerInterface $entityManager, int $idU): Response
     {
         $posts = $entityManager
             ->getRepository(Post::class)
-            ->findBy(['userid' => $id]);
+            ->findBy(['userid' => $idU]);
 
         return $this->render('post/indexMesBlogs.html.twig', [
             'posts' => $posts,
@@ -71,6 +101,6 @@ class PostFrontController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_postFront_MesBlogs', array('id' => $idU), Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_postFront_MesBlogs', array('idU' => $idU), Response::HTTP_SEE_OTHER);
     }
 }
