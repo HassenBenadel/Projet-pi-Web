@@ -67,14 +67,16 @@
                             <div class="reply-form">
                                 <h4>Laisser un commentaire</h4>
                                 <p>Partagez quelques informations avec nous! ^^</p>
-                                <form action="">
-                                    <div class="row">
-                                        <div class="col form-group">
-                                            <textarea name="comment" class="form-control" placeholder="Votre Commentaire.."></textarea>
-                                        </div>
+                                {{ form_start(form,{'attr' : {'novalidate' : 'novalidate'}}) }}
+                                <div class="row">
+                                    <div class="col form-group">
+                                        {{form_widget(form.contenu, {'attr':{'class': 'form-control', 'rows': 5, 'placeholder': "Votre Commentaire.."} })}}
+                                        {{form_errors(form.contenu, {'attr':{'class': 'text-danger'} })}}
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Poster Commentaire</button>
-                                </form>
+                                </div>
+                                {{form_widget(form.contenu, {'attr':{'disabled':'disabled', 'value': post.id} })}}
+                                {{ form_widget(form.Poster, { 'attr': {'class':'btn btn-primary float-end'}})}}
+                                {{form_end(form)}}
                             </div>
                             <br>
                             <h4 class="comments-count">Les Commentaires</h4>

@@ -104,6 +104,4 @@ class Commentaire
 
         return $this;
     }
-
-
 }

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Entity\Commentaire;
-use App\Form\CommentaireType;
+use App\Form\CommentaireTypeFront;
 use App\Form\PostType;
 use App\Form\PostTypeEdit;
 use Doctrine\ORM\EntityManagerInterface;
@@ -89,17 +89,33 @@ class PostFrontController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_postFront_show", methods={"GET"})
+     * @Route("/{id}", name="app_postFront_show", methods={"GET", "POST"})
      */
-    public function show(Post $post, EntityManagerInterface $entityManager, int $id): Response
+    public function show(Post $post, EntityManagerInterface $entityManager, int $id, Request $request): Response
     {
         $commentaires = $entityManager
             ->getRepository(Commentaire::class)
             ->findBy(['idpost' => $id]);
 
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireTypeFront::class, $commentaire);
+        $commentaire->setUserid(1);
+        $commentaire->setCommentateur('omar');
+        $commentaire->setIdpost($post);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($commentaire);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_postFront_show', array('id' => $id), Response::HTTP_SEE_OTHER);
+        }
+
         return $this->render('post/showFront.html.twig', [
             'post' => $post,
             'commentaires' => $commentaires,
+            'commentaire' => $commentaire,
+            'form' => $form->createView(),
         ]);
     }
 
