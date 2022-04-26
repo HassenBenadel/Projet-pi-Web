@@ -30,9 +30,9 @@
 {% endblock %}
 {% block body %}
 	{% block header %}
-			{{ parent() }}
-		{% endblock %}
-	
+		{{ parent() }}
+	{% endblock %}
+
 	<main id="main">
 		<section>
 			<div class="container">
@@ -58,6 +58,14 @@
 							</div>
 						</div>
 					</div>
+					<br>
+					<div class="row">
+						<div class="col-6"></div>
+						<div class="col-6">
+							<a href="{{path('ForgetPassword')}}">Mot de passe oublié</a>
+						</div>
+					</div>
+					<br>
 					<div class="row">
 						<div class="col-6"></div>
 						<div class="col-3">

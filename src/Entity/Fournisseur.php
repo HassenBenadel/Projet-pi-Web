@@ -26,7 +26,7 @@ class Fournisseur
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user" , cascade={"all"})
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="idUser" )
      * })
      */
     private $idUser;

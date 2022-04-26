@@ -18,31 +18,48 @@
 					<table class="table"></tr>
 					<th>Nom</th>
 					<td>{{(app.session.get('user')[0].nom)}}</td>
-
+					<td>
+						<a href="#">Modifier</a>
+					</td>
 				</tr>
 				<tr>
 					<th>Prenom</th>
 					<td>{{(app.session.get('user')[0].prenom)}}</td>
+					<td>
+						<a href="#">Modifier</a>
+					</td>
 				</tr>
 				<tr>
 					<th>Email</th>
 					<td>{{(app.session.get('user')[0].email)}}</td>
+					<td>
+						<a href="#">Modifier</a>
+					</td>
 				</tr>
 				<tr>
 					<th>Telephone</th>
 					<td>{{(app.session.get('user')[0].telephone)}}</td>
+					<td>
+						<a href="#">Modifier</a>
+					</td>
 				</tr>
 				<th>Pays</th>
 				<td>{{(app.session.get('user')[0].pays)}}</td>
+				<td>
+					<a href="#">Modifier</a>
+				</td>
 			</tr>
 			<tr>
 				<th>Ville</th>
 				<td>{{(app.session.get('user')[0].ville)}}</td>
+				<td>
+					<a href="#">Modifier</a>
+				</td>
 			</tr>
 			{#<tr>
-																													<th>Password</th>
-																													<td>{{ utilisateur.password }}</td>
-																												</tr>#}
+																																			<th>Password</th>
+																																			<td>{{ utilisateur.password }}</td>
+																																		</tr>#}
 			<tr>
 				<th>Typecompte</th>
 				<td>{{(app.session.get('user')[0].typecompte)}}</td>

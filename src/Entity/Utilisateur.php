@@ -59,9 +59,9 @@ class Utilisateur
      * @Assert\NotBlank
      * @Assert\Length(
      *      min = 3,
-     *      max = 20,
-     *      minMessage = "Le prenom  doit comporter au moins {{ limit }} caractères",
-     *      maxMessage = "Le prenom  doit comporter au plus {{ limit }} caractères"
+     *      max = 50,
+     *      minMessage = "Le mail  doit comporter au moins {{ limit }} caractères",
+     *      maxMessage = "Le mail  doit comporter au plus {{ limit }} caractères"
      * )
      * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      */
