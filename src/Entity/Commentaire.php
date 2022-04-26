@@ -93,7 +93,7 @@ class Commentaire
         return $this;
     }
 
-    public function getIdpost(): ?Post
+    public function getIdpost(): ?Commentaire
     {
         return $this->idpost;
     }
