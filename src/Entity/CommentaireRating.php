@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentaireRatingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Null_;
 
 /**
  * CommentaireRating
@@ -21,35 +22,21 @@ class CommentaireRating
     private $id;
 
     /**
-     * @var \Commentaire
-     *
-     * @ORM\ManyToOne(targetEntity="Commentaire")
-     * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="idcommentaire", referencedColumnName="id")
-     * })
-     */
-    private $idcommentaire;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $iduser;
 
+    /**
+     * @var \Commentaire
+     *
+     * @ORM\ManyToOne(targetEntity="Commentaire")
+     * @ORM\JoinColumn(name="idcommentaire", referencedColumnName="id", nullable=false)
+     */
+    private $idcommentaire;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdcommentaire(): ?Commentaire
-    {
-        return $this->idcommentaire;
-    }
-
-    public function setIdcommentaire(?Commentaire $idcommentaire): self
-    {
-        $this->idcommentaire = $idcommentaire;
-
-        return $this;
     }
 
     public function getIduser(): ?int
@@ -60,6 +47,23 @@ class CommentaireRating
     public function setIduser(?int $iduser): self
     {
         $this->iduser = $iduser;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->id ?: '';
+    }
+
+    public function getIdcommentaire(): ?Commentaire
+    {
+        return $this->idcommentaire;
+    }
+
+    public function setIdcommentaire(?Commentaire $idcommentaire): self
+    {
+        $this->idcommentaire = $idcommentaire;
 
         return $this;
     }

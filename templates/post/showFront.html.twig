@@ -81,7 +81,7 @@
                             <br>
                             <h4 class="comments-count">Les Commentaires</h4>
                             {% for commentaire in commentaires %}
-                            <div class="blog-author d-flex align-items-center">
+                            <div class="blog-author align-items-center">
                                 <div id="comment" class="comment">
                                     <div class="d-flex">
                                         {# <div class="comment-img"><img src="assets/img/blog/comments-1.jpg" alt=""></div> #}
@@ -93,6 +93,22 @@
                                             </p>
                                         </div>
                                     </div>
+                                    {% set isLiked = false %}
+                                    {% for commrating in commratings %}
+                                        {% if commrating.idcommentaire.id == commentaire.id and commrating.iduser == 1 %}
+                                            {% set isLiked = true %}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <p>
+                                        <a href="{{ path('app_comm_like', {'id': post.id, 'idU': 1, 'idC': commentaire.id}) }}">
+                                            {% if isLiked == true %}
+                                                <i class="bi bi-hand-thumbs-up-fill float-end"></i>
+                                            {% else %}
+                                                <i class="bi bi-hand-thumbs-up float-end"></i>
+                                            {% endif %}
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                             {% endfor %}

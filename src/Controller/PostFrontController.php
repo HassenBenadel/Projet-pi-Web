@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\CommentaireRating;
 use App\Entity\Post;
 use App\Entity\Commentaire;
 use App\Form\CommentaireTypeFront;
@@ -93,6 +94,10 @@ class PostFrontController extends AbstractController
      */
     public function show(Post $post, EntityManagerInterface $entityManager, int $id, Request $request): Response
     {
+        $commratings = $entityManager
+            ->getRepository(CommentaireRating::class)
+            ->findAll();
+
         $commentaires = $entityManager
             ->getRepository(Commentaire::class)
             ->findBy(['idpost' => $id]);
@@ -115,6 +120,7 @@ class PostFrontController extends AbstractController
             'post' => $post,
             'commentaires' => $commentaires,
             'commentaire' => $commentaire,
+            'commratings' => $commratings,
             'form' => $form->createView(),
         ]);
     }
@@ -144,5 +150,32 @@ class PostFrontController extends AbstractController
         }
 
         return $this->redirectToRoute('app_postFront_MesBlogs', array('idU' => $idU), Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/{id}/{idU}/{idC}", name="app_comm_like", methods={"GET", "POST"})
+     */
+    public function like(Request $request, EntityManagerInterface $entityManager,int $id, int $idU, int $idC): Response
+    {
+        $commentaire = $entityManager
+            ->getRepository(Commentaire::class)
+            ->findOneBy(['id' => $idC]);
+
+        $commrating = $entityManager
+            ->getRepository(CommentaireRating::class)
+            ->findOneBy(['idcommentaire' => $idC, 'iduser' => $idU]);
+
+        if(empty($commrating)){
+            $commratinge = new CommentaireRating();
+            $commratinge->setIduser(1);
+            $commratinge->setIdcommentaire($commentaire);
+            $entityManager->persist($commratinge);
+            $entityManager->flush();
+        } else {
+            $entityManager->remove($commrating);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_postFront_show', array('id' => $id), Response::HTTP_SEE_OTHER);
     }
 }
