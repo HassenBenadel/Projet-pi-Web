@@ -71,7 +71,35 @@
                         
                       </div>
 
+                      <div class="row">
+                       <div class="col-md-4 offset-md-4">
+                        <div class="form-group ">
+                          <label for="exampleFormControllInput1"> Are you a robot ? </label>
+                           {{form_widget(depot.captchaCode, {'attr':{'class': 'form-control'}})}}
+                        </div>
+                        </div>
+                       </div>
+
+
+
+                      {% set formErrors= depot.vars.errors.form.getErrors(true) %} 
+                       {% if formErrors|length %}
+                       <div class="alert alert-danger">
+
+                          <u1>
+                            {% for error in formErrors %}
+                               <li> {{error.message}} </li>
+                            {% endfor  %}  
+                          </u1> 
+
+                          </div>
+
+                        {% endif  %}   
+
+
+                            
                        
+
                         
 
                       <div>

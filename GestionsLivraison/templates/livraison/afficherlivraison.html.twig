@@ -6,15 +6,23 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">la liste des livraisons</h4>
+
+                     {%  for message in app.flashes ('info')  %}
+                    <div class= "alert alert-success">
+                    {{ message }}
+                    </div>
+                    {% endfor %}
+
+
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
                           <tr>
-                             <th>Id livraison</th>
+                             
                              <th>Date livraison</th>
                              <th>Prix total</th>
                              <th>Mode paiement</th>
-                             <th>Id livreur</th>
+                             <th> livreur</th>
                              <th>Id commande</th>
                              <th>Id client</th>
                           </tr>
@@ -23,9 +31,7 @@
                           </tr>
         {% for livraison in livraisons  %}
             <tr>
-                <td>
-             {{ livraison.IdLivraison }}
-                </td>
+                
                 <td>
               {{ livraison.DateLivraison ? livraison.DateLivraison|date('Y-m-d') : '' }}
                 </td>
@@ -36,7 +42,7 @@
 <td>
 {{ livraison.modePaiement }}
 </td>
-               <td>{{ livraison.IdLivreur }}</td>
+               <td>{{ livraison.IdLivreur.secteuractivite }}</td>
                <td>{{ livraison.IdCommande }}</td>
                  <td>{{ livraison.IdClient }}</td>
                 <td><a href="{{ path('delliv',{'id': livraison.IdLivraison}) }}"> <button type="button" class="btn btn-primary mr-4" ><font size="3pt" >{% trans %}Delete{% endtrans %}</font></button></a>

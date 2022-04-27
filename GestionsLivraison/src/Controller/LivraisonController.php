@@ -39,6 +39,12 @@ class LivraisonController extends AbstractController
         
             $em->persist($livraison);
             $em->flush();
+
+            $this->addFlash(
+                'info',
+                'Ajout avec succées !'
+            ); 
+
             return $this->redirectToRoute('afficherliv');
         
         }
@@ -68,6 +74,11 @@ class LivraisonController extends AbstractController
         $em->remove($livraison);
         $em->flush();
 
+        $this->addFlash(
+            'info',
+            'Suppression  avec succées !'
+        );
+
         return $this->redirectToRoute('afficherliv');
     }
      /**
@@ -87,6 +98,11 @@ class LivraisonController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($livraison);
             $em->flush();
+
+            $this->addFlash(
+                'info',
+                'Modification  avec succées !'
+            );
          
             return $this->redirectToRoute('afficherliv');
         }

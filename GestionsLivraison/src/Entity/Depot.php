@@ -25,12 +25,15 @@ class Depot
     private $adresse;
 
     /**
+     * @Assert\NotBlank(message="quantite  :doit etre non vide")
+     * @Assert\Positive(message="quantite  :doit etre > 0")
      * @ORM\Column(type="integer")
      */
     private $quantite;
 
     /**
      * @Assert\NotBlank(message="disponibilite   :doit etre non vide")
+     * @Assert\Choice(choices={"Disponible","Non Disponible"}, message="Disponibilite  :doit etre Disponible ou Non disponible")
      * @ORM\Column(type="string", length=1000)
      */
     private $disponibilite;
@@ -39,6 +42,8 @@ class Depot
      * @ORM\Column(type="integer")
      */
     private $Id_produit;
+
+    protected $captchaCode;
 
     public function getIdDepot(): ?int
     {
@@ -93,7 +98,7 @@ class Depot
         return $this;
     }
      /**
-     * @ORM\ManyToOne(targetEntity=Livraison::class)
+     * @ORM\ManyToOne(targetEntity=Livraison::class , inversedBy="depot")
      * @ORM\JoinColumn(name="Id_livraison",referencedColumnName="Id_livraison",nullable=false)
      */
     private $Id_livraison;
@@ -112,4 +117,21 @@ class Depot
         return $this;
     }
 
+
+    public function getCaptchaCode()
+    {
+      return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+      $this->captchaCode = $captchaCode;
+    }
+
+
+
+    public static function getDisponible()
+    {
+        return ['Disponible', 'Non Disponible'];
+    }
 }

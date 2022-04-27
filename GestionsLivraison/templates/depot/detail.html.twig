@@ -1,0 +1,38 @@
+{% extends 'Bbase.html.twig' %}
+
+{% block title %}Depot{% endblock %}
+
+{% block body %}
+    <h1>Depot</h1>
+
+    <table class="table">
+        <tbody>
+         
+            <tr>
+                 <th>adresse</th>
+                <td>{{ depot.Adresse }}</td>
+            </tr>
+            <tr>
+                <th>quantite</th>
+                <td>{{ depot.Quantite}}</td>
+            </tr>
+            <tr>
+                <th>disponibilite</th>
+                <td>{{ depot.Disponibilite }}</td>
+            </tr>
+            <tr>
+                <th>id_produit</th>
+                <td>{{ depot.IdProduit }}</td>
+            </tr>
+            <tr>
+                <th>Id_livraison</th>
+                <td>{{ depot.IdLivraison }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <iframe style="border:0; width: 100%; height: 350px;" class="img-fluid" src="https://maps.google.com/maps?q=+{{depot.adresse}}+&hl=fr&z=14&amp;output=embed
+" frameborder="0" allowfullscreen></iframe>              <div class="map-wrapper-300 mb-3">      <!-- Modal -->
+
+    
+{% endblock %}

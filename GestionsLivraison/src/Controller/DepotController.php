@@ -41,6 +41,12 @@ class DepotController extends AbstractController
         
             $em->persist($depot);
             $em->flush();
+
+            $this->addFlash(
+                'info',
+                'Ajout avec succées !'
+            );
+
             return $this->redirectToRoute('afficherdepot');
         
         }
@@ -70,6 +76,11 @@ class DepotController extends AbstractController
         $depot = $this->getDoctrine()->getRepository(Depot::class)->find($id);
         $em->remove($depot);
         $em->flush();
+
+        $this->addFlash(
+            'info',
+            'Suppression avec succées !'
+        );
      
         return $this->redirectToRoute('afficherdepot');
     }
@@ -91,6 +102,11 @@ class DepotController extends AbstractController
             $em->persist($depot);
             $em->flush();
          
+            $this->addFlash(
+                'info',
+                'modification avec succées !'
+            );
+
             return $this->redirectToRoute('afficherdepot');
         }
         return $this->render('depot/updatedepot.html.twig', [
@@ -98,4 +114,16 @@ class DepotController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/depd/{id}", name="depdd")
+     */
+    public function show(Request $request,$id)
+    {
+       
+        $e = $this->getDoctrine()->getRepository(Depot::class);
+        $depot = $e->find($id);
+        return $this->render('depot/detail.html.twig', [
+            'depot' => 'depot'
+        ]);
+    }
 }

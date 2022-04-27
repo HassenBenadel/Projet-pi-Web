@@ -25,24 +25,28 @@ class Livraison
         return $this->Id_livraison;
     }
     /**
+     * @Assert\GreaterThan("today")
      * @ORM\Column(type="date")
      */
     private $Date_livraison;
 
      /**
      * @Assert\NotBlank(message="prix total  :doit etre non vide")
+     * @Assert\Positive(message="quantite  :doit etre > 0")
      * @ORM\Column(type="string", length=1000)
      */
     private $prix_total;
 
-   /**
-     * @Assert\NotBlank(message="mode paiement  :doit etre non vide")
+     /**
+     * @Assert\NotBlank(message="mode_paiement   :doit etre non vide")
+     * @Assert\Choice(choices={"Carte bancaire","Espéces"}, message="mode_paiement    :doit etre Carte bancaire ou Espéces")
      * @ORM\Column(type="string", length=1000)
      */
     private $mode_paiement;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=Livreur::class)
+     * @ORM\JoinColumn(name="Id_livreur",referencedColumnName="id_livreur",nullable=true)
      */
     private $Id_livreur;
 
@@ -55,6 +59,8 @@ class Livraison
      * @ORM\Column(type="integer")
      */
     private $Id_client;
+
+    protected $captchaCode;
 
     public function setIdLivraison(int $Id_livraison): self
     {
@@ -102,12 +108,12 @@ class Livraison
         return $this;
     }
 
-    public function getIdLivreur(): ?int
+    public function getIdLivreur(): ?Livreur
     {
         return $this->Id_livreur;
     }
 
-    public function setIdLivreur(int $Id_livreur): self
+    public function setIdLivreur(?Livreur $Id_livreur): self
     {
         $this->Id_livreur = $Id_livreur;
 
@@ -151,5 +157,16 @@ class Livraison
     public function __toString()
     {
         return (string)$this->getIdLivraison();
+    }
+
+
+    public function getCaptchaCode()
+    {
+      return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+      $this->captchaCode = $captchaCode;
     }
 }

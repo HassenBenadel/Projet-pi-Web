@@ -8,3 +8,8 @@ blogger_blog_replyCommentaire:
     id:  \d+
     comment_id:  \d+
     user:  \d+
+
+
+# /app/config/routes.yaml
+captcha_routing:
+    resource: "@CaptchaBundle/Resources/config/routing.yml"

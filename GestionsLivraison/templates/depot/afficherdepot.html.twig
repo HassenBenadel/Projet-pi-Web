@@ -5,6 +5,16 @@
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">la liste des depots</h4>
+
+
+                    {%  for message in app.flashes ('info')  %}
+                    <div class= "alert alert-success">
+                    {{ message }}
+                    </div>
+                    {% endfor %}
+
+
+
                     <div class="table-responsive">
                       <table class="table table-striped">
                         <thead>
@@ -45,7 +55,7 @@
                 </td>
                 </td>
                 <td><a href="{{ path('moddep',{'id': depot.IdDepot}) }}"> <button type="button" class="btn btn-primary mr-4" ><font size="3pt" >{% trans %}Update{% endtrans %}</font></button></a>
-                </td>
+              
             </tr>
         {%endfor%}
                         </tbody>

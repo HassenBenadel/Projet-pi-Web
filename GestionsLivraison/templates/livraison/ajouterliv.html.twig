@@ -51,7 +51,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Id livreur </label>
+                            <label class="col-sm-3 col-form-label"> livreur </label>
                             <div class="col-sm-9">
                               {{form_widget(livraison.Id_livreur, {'attr':{'class': 'form-control'}})}}
                             </div>
@@ -82,6 +82,35 @@
                         </div>
                         
                       </div>
+
+
+                      <div class="row">
+                       <div class="col-md-4 offset-md-4">
+                        <div class="form-group ">
+                          <label for="exampleFormControllInput1"> Are you a robot ? </label>
+                           {{form_widget(livraison.captchaCode, {'attr':{'class': 'form-control'}})}}
+                        </div>
+                        </div>
+                       </div>
+
+
+
+
+                     {% set formErrors= livraison.vars.errors.form.getErrors(true) %} 
+                       {% if formErrors|length %}
+                       <div class="alert alert-danger">
+
+                          <u1>
+                            {% for error in formErrors %}
+                               <li> {{error.message}} </li>
+                            {% endfor  %}  
+                          </u1> 
+
+                          </div>
+
+                        {% endif  %}   
+
+
                       <div>
                      
                      {{ form_widget(livraison.Ajouter, { 'attr': {'class':'btn btn-primary mr-2' }})}}
