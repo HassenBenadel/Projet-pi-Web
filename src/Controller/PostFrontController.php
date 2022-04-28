@@ -52,6 +52,10 @@ class PostFrontController extends AbstractController
             $post->setImage($filename);
             $entityManager->persist($post);
             $entityManager->flush();
+            $this->addFlash(
+                'info',
+                'Ajout avec Succées !'
+            );
 
             return $this->redirectToRoute('app_postFront_MesBlogs', array('idU' => $idU), Response::HTTP_SEE_OTHER);
         }
@@ -90,9 +94,9 @@ class PostFrontController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_postFront_show", methods={"GET", "POST"})
+     * @Route("/show/{id}/{idU}", name="app_postFront_show", methods={"GET", "POST"})
      */
-    public function show(Post $post, EntityManagerInterface $entityManager, int $id, Request $request): Response
+    public function show(Post $post, EntityManagerInterface $entityManager, int $id, int $idU, Request $request): Response
     {
         $commratings = $entityManager
             ->getRepository(CommentaireRating::class)
@@ -104,7 +108,7 @@ class PostFrontController extends AbstractController
 
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireTypeFront::class, $commentaire);
-        $commentaire->setUserid(1);
+        $commentaire->setUserid($idU);
         $commentaire->setCommentateur('omar');
         $commentaire->setIdpost($post);
         $form->handleRequest($request);
@@ -113,7 +117,7 @@ class PostFrontController extends AbstractController
             $entityManager->persist($commentaire);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_postFront_show', array('id' => $id), Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_postFront_show', array('id' => $id, 'idU' => $idU), Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('post/showFront.html.twig', [
@@ -121,6 +125,7 @@ class PostFrontController extends AbstractController
             'commentaires' => $commentaires,
             'commentaire' => $commentaire,
             'commratings' => $commratings,
+            'idU' => $idU,
             'form' => $form->createView(),
         ]);
     }
@@ -136,6 +141,7 @@ class PostFrontController extends AbstractController
 
         return $this->render('post/indexMesBlogs.html.twig', [
             'posts' => $posts,
+            'idU' => $idU,
         ]);
     }
 
@@ -167,7 +173,7 @@ class PostFrontController extends AbstractController
 
         if(empty($commrating)){
             $commratinge = new CommentaireRating();
-            $commratinge->setIduser(1);
+            $commratinge->setIduser($idU);
             $commratinge->setIdcommentaire($commentaire);
             $entityManager->persist($commratinge);
             $entityManager->flush();
@@ -176,6 +182,6 @@ class PostFrontController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_postFront_show', array('id' => $id), Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_postFront_show', array('id' => $id, 'idU' => $idU), Response::HTTP_SEE_OTHER);
     }
 }

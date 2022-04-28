@@ -30,6 +30,13 @@ class CommentaireController extends AbstractController
     }
 
     /**
+     * @Route("/stats", name="stats")
+     */
+    public function statistiques(){
+        return $this->render('test.html.twig');
+    }
+
+    /**
      * @Route("/new", name="app_commentaire_new", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response

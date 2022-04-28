@@ -95,13 +95,13 @@
                                     </div>
                                     {% set isLiked = false %}
                                     {% for commrating in commratings %}
-                                        {% if commrating.idcommentaire.id == commentaire.id and commrating.iduser == 1 %}
+                                        {% if commrating.idcommentaire.id == commentaire.id and commrating.iduser == idU %}
                                             {% set isLiked = true %}
                                         {% endif %}
                                     {% endfor %}
 
                                     <p>
-                                        <a href="{{ path('app_comm_like', {'id': post.id, 'idU': 1, 'idC': commentaire.id}) }}">
+                                        <a href="{{ path('app_comm_like', {'id': post.id, 'idU': idU, 'idC': commentaire.id}) }}">
                                             {% if isLiked == true %}
                                                 <i class="bi bi-hand-thumbs-up-fill float-end"></i>
                                             {% else %}
